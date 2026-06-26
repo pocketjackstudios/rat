@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 1. Carregar A-Frame primeiro -->
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <!-- 2. Carregar APENAS a versão MindAR para A-Frame -->
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 </head>
 
 <body>
+    <!-- 3. Corrigida a sintaxe da cena -->
     <a-scene
-        mindar-image="imageTargetSrc: https://github.com/pocketjackstudios/rat/raw/refs/heads/main/assets/targets/targets.mind"
-        showStats: true; color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
-        vr-mode-ui="enabled:false" device-orientation-permission-ui="enabled:false">
+        mindar-image="imageTargetSrc: https://raw.githubusercontent.com/pocketjackstudios/rat/main/assets/targets/targets.mind;"
+        color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false">
+
         <a-assets>
-            <img id="card" src="https://github.com/pocketjackstudios/rat/blob/main/assets/image/rat.png?raw=true" />
+            <!-- Links Raw diretos -->
+            <img id="card" src="https://raw.githubusercontent.com/pocketjackstudios/rat/main/assets/image/rat.png">
             <a-asset-item id="model"
-                src="https://github.com/pocketjackstudios/rat/raw/refs/heads/main/assets/models/rat_rig.gltf"></a-asset-item>
+                src="https://raw.githubusercontent.com/pocketjackstudios/rat/main/assets/models/rat_rig.gltf"></a-asset-item>
         </a-assets>
-        <a-camera position="0 0 0" look-controls="enabled:false"> </a-camera>
+
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
         <a-entity mindar-image-target="targetIndex: 0">
-            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="0.1 0.1 0.1" src="#model"></a-gltf-model>
+            <!-- Tente uma escala menor se o rato não aparecer -->
+            <a-gltf-model rotation="0 0 0" position="0 0 0" scale="0.05 0.05 0.05" src="#model"></a-gltf-model>
         </a-entity>
     </a-scene>
 </body>
